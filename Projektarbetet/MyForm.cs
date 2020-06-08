@@ -55,7 +55,7 @@ namespace Projektarbetet
             InitLayout();
             Shown += MyFormShown;
             WindowState = FormWindowState.Maximized;
-            Text = "Fiskrestaurang";
+            Text = "Fiskrestaurang - av Novak och Tomas";
             Table = new TableLayoutPanel
             {
                 RowCount = 12,
@@ -86,8 +86,6 @@ namespace Projektarbetet
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill,
                 Font = new Font("Arial Black", 30),
-                ForeColor = Color.Black,
-             //   BackColor = Color.DarkBlue
             };
             Table.Controls.Add(restaurantName);
             Table.SetColumnSpan(restaurantName, 3);
@@ -213,10 +211,10 @@ namespace Projektarbetet
 
 
             // Slumpar fram restaurang-bilderna och lägger i PictureBox
-           // RndPicture = new Random().Next(1, 8);
+            RndPicture = new Random().Next(1, 8);
             Picture = new PictureBox
             {
-                Image = Image.FromFile(@"restPictures\pic1.jpg"),
+                Image = Image.FromFile(@"restPictures\" + "pic" + RndPicture + ".jpg"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Dock = DockStyle.Fill,
                 Width = 150,
@@ -425,7 +423,7 @@ namespace Projektarbetet
             TotalPrice = 0;
             TotalPriceWithDiscount = 0;
             TotalOrderDictionary = new Dictionary<string, int>();
-            string[] cartLines = File.ReadAllLines(@"Cart.csv");
+            string[] cartLines = File.ReadAllLines(@"C:\Temp\Cart.csv");
             // Kontrollerar om det finns en sparad varukorg.
             if (cartLines.Length != 0)
             {
@@ -453,7 +451,7 @@ namespace Projektarbetet
                             AddToTotalPrice(p);
                         }
                     }
-                    File.Create(@"Cart.csv").Dispose();
+                    File.Create(@"C:\Temp\Cart.csv").Dispose();
                 }
                 TotalPriceLabel.Text = "Pris totalt:  " + TotalPrice + " kr";
             }
@@ -485,7 +483,7 @@ namespace Projektarbetet
             // Skriver välkomstmeddelande.
             System.Threading.Thread.Sleep(1);
             string[] userNameArray = Environment.UserName.Split('.');
-           // MessageBox.Show("Välkommen till fiskrestaurangen Sea Shark, " + userNameArray[0].First().ToString().ToUpper() + userNameArray[0].Remove(0, 1).ToLower() + "!");
+            MessageBox.Show("Välkommen till fiskrestaurangen Sea Shark, " + userNameArray[0].First().ToString().ToUpper() + userNameArray[0].Remove(0, 1).ToLower() + "!");
 
             // Slumpar fram om man är den "1000-e" kunden som då får 75% rabatt.
             int rndGuest = new Random().Next(1, 11);
@@ -812,7 +810,7 @@ namespace Projektarbetet
                         PriceInfo = TotalPriceWithDiscount + " SEK" + "\n" + "(Din rabatt " + (TotalPrice * Percentage / 100) + " SEK)";
                     }
                 }
-                Picture.Image = Image.FromFile(@"restPictures\pic1.jpg");
+                Picture.Image = Image.FromFile(@"restPictures\pic8.jpg");
 
                 // Kvittot presenteras.
                 MessageBox.Show(
@@ -836,8 +834,8 @@ namespace Projektarbetet
             if (TotalOrderDictionary.Count != 0)
             {
                 string csvFile = string.Join(Environment.NewLine, TotalOrderDictionary.Select(d => d.Key + ";" + d.Value));
-                System.IO.File.WriteAllText(@"Cart.csv", csvFile);
-                Picture.Image = Image.FromFile(@"restPictures\pic1.jpg");
+                System.IO.File.WriteAllText(@"C:\Temp\Cart.csv", csvFile);
+                Picture.Image = Image.FromFile(@"restPictures\pic8.jpg");
                 MessageBox.Show("Din varukorg är sparad!");
                 ClearAll(0);
             }
@@ -856,7 +854,7 @@ namespace Projektarbetet
             TotalPrice = 0;
             TotalPriceWithDiscount = 0;
             TotalPriceLabel.Text = "Pris totalt:  ";
-      //      Picture.Image = Image.FromFile(@"restPictures\" + "pic" + RndPicture + ".jpg");
+            Picture.Image = Image.FromFile(@"restPictures\" + "pic" + RndPicture + ".jpg");
             DescriptionBox.Clear();
             Starters.SelectedIndex = -1;
             WarmDishes.SelectedIndex = -1;

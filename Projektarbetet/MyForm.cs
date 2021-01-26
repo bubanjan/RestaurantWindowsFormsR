@@ -211,7 +211,7 @@ namespace Projektarbetet
 
 
             // Slumpar fram restaurang-bilderna och lägger i PictureBox
-            RndPicture = new Random().Next(1, 8);
+            RndPicture = new Random().Next(1, 1);
             Picture = new PictureBox
             {
                 Image = Image.FromFile(@"restPictures\" + "pic" + RndPicture + ".jpg"),
@@ -810,7 +810,7 @@ namespace Projektarbetet
                         PriceInfo = TotalPriceWithDiscount + " SEK" + "\n" + "(Din rabatt " + (TotalPrice * Percentage / 100) + " SEK)";
                     }
                 }
-                Picture.Image = Image.FromFile(@"restPictures\pic8.jpg");
+                Picture.Image = Image.FromFile(@"restPictures\pic1.jpg");
 
                 // Kvittot presenteras.
                 MessageBox.Show(

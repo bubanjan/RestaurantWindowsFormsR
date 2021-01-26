@@ -835,7 +835,7 @@ namespace Projektarbetet
             {
                 string csvFile = string.Join(Environment.NewLine, TotalOrderDictionary.Select(d => d.Key + ";" + d.Value));
                 System.IO.File.WriteAllText(@"C:\Temp\Cart.csv", csvFile);
-                Picture.Image = Image.FromFile(@"restPictures\pic8.jpg");
+                Picture.Image = Image.FromFile(@"restPictures\pic1.jpg");
                 MessageBox.Show("Din varukorg är sparad!");
                 ClearAll(0);
             }
